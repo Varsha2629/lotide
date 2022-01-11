@@ -1,9 +1,9 @@
 // FUNCTION IMPLEMENTATION
 const assertEqual = function(actual, expected) {
   if(actual !== expected){
-      console.log(`:red_circle:`, `Assertion Failed: ${actual} !== ${expected}`);
+      console.log(`${String.fromCodePoint(0x1F621)} Assertion Failed: ${actual} !== ${expected}`);
   }else{
-      console.log(`:white_check_mark`, `Assertion Passed: ${actual} === ${expected}`);
+      console.log(`${String.fromCodePoint(0x1F604)} Assertion Passed: ${actual} === ${expected}`);
   }
 
 };
