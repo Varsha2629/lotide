@@ -2,10 +2,12 @@ const takeUntil = function (array, callback) {
   let slice = [];
 
   for (let word of array) {
-    if (!callback(word))
+    if (!callback(word)){
       slice.push(word);
-    else
+    }
+    else {
       break;
+    }
   }
   return slice;
 }
