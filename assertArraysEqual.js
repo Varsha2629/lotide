@@ -1,6 +1,6 @@
 const eqArrays = function(arr1, arr2){
 
-   let newArr = arr1.length !== arr2.length ? false : true;
+  let newArr = arr1.length !== arr2.length ? false : true;
 
   for(i of arr1){
     if(arr1[i] !== arr2[i]){
@@ -27,3 +27,5 @@ console.log(
 console.log(
   assertArraysEqual([1,2,3], [1,2,4], false) // expect false
 );
+ 
+module.exports = assertArraysEqual;

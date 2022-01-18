@@ -17,3 +17,5 @@ let testArray = [1,2,3,4,5];
 
 assertEqual(tail(testArray)[0], 2);
 assertEqual(tail(testArray).length, 2);
+
+module.exports = tail;

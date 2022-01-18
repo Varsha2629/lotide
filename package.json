@@ -1,13 +1,12 @@
 {
   "name": "lotide",
   "version": "1.0.0",
-  "description": "",
   "main": "assertArraysEqual.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -18,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/Varsha2629/lotide/issues"
   },
-  "homepage": "https://github.com/Varsha2629/lotide#readme"
+  "homepage": "https://github.com/Varsha2629/lotide#readme",
+  "description": "A mini clone of the [Lodash](https://lodash.com) library.",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.1.4"
+  }
 }
