@@ -27,19 +27,17 @@ This project was created and published by me as part of my learnings at Lighthou
 The following functions are currently implemented:
 
 *  `head` : returns an array of the first of a given array
-*  `tail` : 
-*  `middle` :
-*  `assertArraysEqual` :
-*  `assertEqual` :
-*  `assertObjectsEqual` :
-*  `countLetters` :
-*  `countOnly` :
-*  `eqArrays` :
-*  `eqObjects` :
-*  `findKeys` :
-*  `findKeyByValue` :
-*  `flatten` :
-*  `letterPositions` :
-*  `map` :
-*  `takeUntil` : 
-*  `without` :
+*  `tail` : return array except first element of an array
+*  `middle` : return the middle element of an array
+*  `assertArraysEqual` : return same array
+*  `assertEqual` : returns a boolean of if two arguments are equal
+*  `assertObjectsEqual` : returns a boolean of if two arguments are equal
+*  `countLetters` : returns an object of letter frequency
+*  `countOnly` : returns a number of the requency of the argument in a list
+*  `eqArrays` : returns boolean if two arrays are equal using recursion
+*  `eqObjects` : returns boolean if two objects are equal
+*  `findKeys` : returns key name
+*  `findKeyByValue` : returns name of argument value
+*  `letterPositions` : returns an object with letters are key and the position in value
+*  `takeUntil` : returns an array of given array until the given keyword
+*  `without` : returns array without list of toberemoved items

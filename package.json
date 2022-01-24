@@ -1,5 +1,5 @@
 {
-  "name": "lotide",
+  "name": "@wishsac/lotide",
   "version": "1.0.0",
   "main": "assertArraysEqual.js",
   "directories": {
@@ -22,5 +22,6 @@
   "devDependencies": {
     "chai": "^4.3.4",
     "mocha": "^9.1.4"
-  }
+  },
+  "dependencies": {}
 }
