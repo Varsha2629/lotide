@@ -16,7 +16,7 @@ const countLetters = function(str){
         letterObject[letter] += 1;
  
     } else {
-      letterObject[letter] =1;
+      letterObject[letter] = 1;
     }
 
   } 
