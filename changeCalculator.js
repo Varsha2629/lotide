@@ -16,7 +16,6 @@ const calculateChange = (total, cash) => {
 
   for (let key in changes) {
     let totalChange = Math.floor(totalAmount / changes[key]);
-
     if (totalChange > 0) {
       result[key] = totalChange;
       totalAmount = totalAmount % changes[key];
