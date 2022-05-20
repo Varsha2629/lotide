@@ -11,7 +11,7 @@ const dateFormat = (date) => {
 return
 }
 
-let input = new Date("07-09-2022");
+let input = new Date("07/09/2022");
 
 console.log(dateFormat(input));
 
