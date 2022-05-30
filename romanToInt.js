@@ -29,3 +29,22 @@ s.split('').map((v, i) => {
 return result;
 };
 console.log(romanToInt('LVIII'))
+
+
+
+// let result = 0;
+
+// for (i=0; i < s.length; i++){
+//     const cur = sym[s[i]];
+//     const next = sym[s[i+1]];
+
+//     if (cur < next){
+//         result += next - cur // IV -> 5 - 1 = 4
+//         i++
+//     } else {
+//         result += cur
+//     }
+// }
+
+// return result;
+// console.log(romanToInt('IV'))
