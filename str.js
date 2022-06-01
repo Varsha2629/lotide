@@ -1,3 +1,5 @@
+// Test
+
 let s = "A while back I needed to count the amount of letters that a piece of text in an email template had (to avoid passing any character limits)";
 
 const str = (s) => {
