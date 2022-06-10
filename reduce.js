@@ -7,9 +7,8 @@ function findSum(arr) {
   }
   return sum;
 }
-console.log(findSum(arr));
+
 const outPut = arr.reduce(function(acc, curr) {
   acc = acc + curr
-  console.log(acc)
   return acc;
 }, 0);
