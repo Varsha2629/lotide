@@ -21,6 +21,6 @@ The callback should be called with two arguments:
 
 const fs = require('fs');
 const sumFileData = (filePath1, filePath2, callback) => {
-      const output = fs.writeFile('text.txt');
+      const output = fs.writeFile( console.log('testing') );
       console.log(output);
 } 
