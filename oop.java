@@ -52,23 +52,31 @@
 // Polymorphysam : "The polymorphism is a core concept of an object-oriented paradigm that provides a way to perform a single action in different forms. It provides an ability to call the same method on different JavaScript objects. As JavaScript is not a type-safe language, we can pass any type of data members with the methods."
     // MethodOverloading and MethodOverriding
 
-    // Example1:  
-    <script>  
-        class A  
-        {  
-        display()  
-        {  
-            document.writeln("A is invoked");  
-        }  
-        }  
-        class B extends A  
-        {  
-        }  
-    var b=new B();  
-    b.display();            // output: A is invoked
-    </script>   
+    // Example1: MethodOverriding
+    class Student {
+            string name;
+            int age;
+            public void printInfo(string name) {
+                system.out.println(name);
 
-    // Example2: 
+            }
+            public void printInfo(int age) {
+                system.out.println(age);
+            }
+            public void printInfo(string name, int age) {
+                system.out.println(name + " " + age);
+            }
+        }
+    class OOP {
+        public void printInfo() {
+            Suduent s1 = new Student();
+            s1.printInfo(12);
+            
+        }
+    }  
+    
+
+    // Example2: MethodOverloading 
     class Student {
         string name;
         int age;
@@ -83,6 +91,13 @@
             system.out.println(name + " " + age);
         }
     }
+class OOP {
+    public void printInfo() {
+        Suduent s1 = new Student();
+        s1.printInfo(12);
+        
+    }
+}
 
 //  Encapsulation
 // Encapsulation in Java is a process of wrapping code and data together into a single unit, for example, a capsule which is mixed of several medicines.
