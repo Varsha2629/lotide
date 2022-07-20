@@ -23,7 +23,7 @@
         class TestInheritance{  
         public static void main(String args[]){  
         Dog d=new Dog();  
-        d.bark();  
+        d.bark();   
         d.eat();  
     }}  
     // output: barking...
@@ -52,7 +52,7 @@
 // Polymorphysam : "The polymorphism is a core concept of an object-oriented paradigm that provides a way to perform a single action in different forms. It provides an ability to call the same method on different JavaScript objects. As JavaScript is not a type-safe language, we can pass any type of data members with the methods."
     // MethodOverloading and MethodOverriding
 
-    // Example1: MethodOverriding
+    // Example1: MethodOverloading
     class Student {
             string name;
             int age;
@@ -76,25 +76,22 @@
     }  
     
 
-    // Example2: MethodOverloading 
+    // Example2: MethodOverriding 
     class Student {
-        string name;
-        int age;
+                
         public void printInfo(string name) {
-            system.out.println(name);
+            system.out.println("Varsha");
 
         }
-        public void printInfo(int age) {
-            system.out.println(age);
+        public void printInfo(string name) {
+            system.out.println("Sachin");       // Method overriding
         }
-        public void printInfo(string name, int age) {
-            system.out.println(name + " " + age);
-        }
+       
     }
 class OOP {
     public void printInfo() {
         Suduent s1 = new Student();
-        s1.printInfo(12);
+        s1.printInfo();
         
     }
 }
