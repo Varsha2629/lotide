@@ -16,4 +16,4 @@ const primeNumber = (n) => {
     return isPrime;
   }
 
-console.log(primeNumber(7));
+console.log(primeNumber(34));
