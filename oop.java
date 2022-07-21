@@ -76,7 +76,8 @@
     }  
     
 
-    // Example2: MethodOverriding 
+    // E
+     xample2: MethodOverriding 
     class Student {
                 
         public void printInfo(string name) {

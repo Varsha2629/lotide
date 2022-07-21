@@ -49,14 +49,19 @@ ORDERS Table
    FROM CUSTOMERS INNER JOIN ORDERS
    ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
 
+-- The LEFT JOIN keyword returns all records from the left table (CUSTOMERS), and the matching records from the right table (ORDERS). The result is 0 records from the right side, if there is no match.
   SELECT NAME, DATE 
     FROM CUSTOMERS LEFT JOIN ORDERS
     ON  CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
-
+    
+-- The RIGHT JOIN keyword returns all records from the right table (ORDERS), and the matching records from the left table (CUSTOMERS). The result is 0 records from the left side, if there is no match.
   SELECT NAME, DATE 
     FROM CUSTOMERS RIGHT JOIN ORDERS
     ON  CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
     
+  -- The FULL OUTER JOIN keyword returns all records when there is a match in left (CUSTOMERS) or right (ORDERS) table records.
   SELECT NAME, DATE 
     FROM CUSTOMERS FULL JOIN ORDERS
     ON  CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
+
+    --outer Join is 
