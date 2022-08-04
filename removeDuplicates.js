@@ -9,4 +9,4 @@ const removeDuplicates = function(nums) {
   }
     return result;
  }
- removeDuplicates([0, 11, 12, 13, 13, 14, 14, 16])
+console.log(removeDuplicates([0, 11, 12, 13, 13, 14, 14, 16]))

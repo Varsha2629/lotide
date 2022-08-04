@@ -34,7 +34,6 @@ const eqArrays = function (arr1, arr2) {
   return result;
 }
 
-
 findKey({
   "Blue Hill": { stars: 1 },
   "Akaleri": { stars: 3 },
