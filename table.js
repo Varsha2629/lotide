@@ -1,4 +1,3 @@
-
 // Given a number, print out a multiplication table up to and including that number
 
 // table(3)
