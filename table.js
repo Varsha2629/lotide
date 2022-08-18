@@ -8,7 +8,7 @@
 
 const table = (x) => {
 		
-  let result = [[1,2,3,4]];
+  let result = [[]];
   for(let i = 1; i <= x; i++){
       let arr = [];
   	for(let j = 1; j <= x; j++){
