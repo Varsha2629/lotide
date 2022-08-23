@@ -47,11 +47,12 @@ Display the first and last names, department names, addresses, cities, and state
     ON e.manager_id = d.manager_id
     JOIN locations l
     ON d.location_id = l.location_id
-    WHERE e.manager_id IS NOT NULL
+   WHERE EXISTS (SELECT 'x' 
+                FROM employees 
+                WHERE manager_id = e.employee_id)
     ORDER BY d.department_id;
 
-    
-    /*5. Show any employee who earns the same or more salary as her/his manager. Show the first name, last name, 
+        /*5. Show any employee who earns the same or more salary as her/his manager. Show the first name, last name, 
     job id, and salary of the employee, and the first name, last name, job id, and salary of the manager. Use meaningful column aliases throughout.*/    
     
     SELECT first_name, last_name,job_id, salary, Manager_ID, Employee_ID
@@ -144,8 +145,8 @@ Display the first and last names, department names, addresses, cities, and state
     /*14. Show the commissioned employees whose total pay is above the average total pay of commissioned employees. Total pay is salary added to the product of commission percent multiplied by the total sales for that salesperson.
     Show first name, last name, and total pay. Sort the result by the total pay.*/
 
-    SELECT first_name, lastname, total_pay
-    FROM 
+    SELECT first_name, lastname, total_pay, salary, 
+    FROM
     
 
     /*15. Sales managers earn a commission on the total sales of all their sales representatives. For each sales manager,
