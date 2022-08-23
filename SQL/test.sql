@@ -16,11 +16,11 @@ salary, job id, department name, city, and country name. Do not hard code any va
     /* 2. Show any employee who still appears as a consultant. Display the first and last name, job id, salary, and manager id, all from the employees table.
     Sort the result by last name.*/
 
-    SELECT e.first_name||' '||e.last_name AS "First and Last Name", e.job_id, e.salary, e.MANAGER_ID
+    SELECT e.first_name||' '||e.last_name AS "First and Last Name", e.job_id AS job_id, e.salary AS Salary, e.MANAGER_ID AS Manager
     FROM employees e
-    WHERE job_id IN (SELECT job_id FROM consultants)
+    JOIN consultants c
+    ON  e.first_name||' '||e.last_name =  c.first_name||' '||c.last_name
     ORDER BY e.last_name;
-    
     
     /*3. For each customer, display their id, first name, last name, city, and their largest sale, total sales, largest sale as a percentage of total sales,
     average sales amount, and a count of how many sales they have each transacted.
@@ -38,7 +38,7 @@ salary, job id, department name, city, and country name. Do not hard code any va
          ORDER BY c.CUST_ID;
     
     
-/*4. Show the managers who manage entire departments. 
+   /*4. Show the managers who manage entire departments. 
 Display the first and last names, department names, addresses, cities, and states. Sort the output by department id.*/
 
     SELECT e.first_name||' '||e.last_name AS "First and Last Name", d.department_name, l.street_address, l.city, l.state_province
@@ -143,6 +143,9 @@ Display the first and last names, department names, addresses, cities, and state
 
     /*14. Show the commissioned employees whose total pay is above the average total pay of commissioned employees. Total pay is salary added to the product of commission percent multiplied by the total sales for that salesperson.
     Show first name, last name, and total pay. Sort the result by the total pay.*/
+
+    SELECT first_name, lastname, total_pay
+    FROM 
     
 
     /*15. Sales managers earn a commission on the total sales of all their sales representatives. For each sales manager,
