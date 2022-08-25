@@ -25,11 +25,13 @@
 
   Display the number of companies with a b in their name 
 
-  Answer: grep -c b companies.dat
+  Answer: grep -c 'b' ~/tradingSystem/companies.dat
+  Answer: grep -c 'B' ~/tradingSystem/companies.dat
 
   Identify all the companies with more than 1 word in their name 
 
   Answer: grep [' '] companies.dat
+  grep -i '.*:.* .*:' companies.dat
 
 4. Using the currency.dat file 
 
@@ -47,12 +49,12 @@ Answer: find ~ -name "*.dat" -print
 
 6. Find all the files within the /student_files directory which are larger than 1k in size and display their size 
 
-Answer:  find /student_files -type f -size +1k -exec wc -c {} \
+Answer:  find /student_files -type f -size +1k -exec wc -c {} \;
+
 
 7. Find all empty files in your home directory and interactively remove them 
 
-Answer: find ~ -empty -ok rm {} \
-
+Answer: find ~ -empty -type f -ok rm {} \;
 
 8. List the contents of your home directory and display only the lines which refer to files 
 
@@ -60,15 +62,16 @@ Answer: ls -l | grep ^-
 
 9. What does the following command do? 
 
-find /var –mtime -36 –print 
+find /var –mtime -36 –print
 
 Run this command and inspect results 
+  unknown predicate '-36'
 
 Run this command and redirect the errors to /dev/null 
 
+find /var –mtime -36 –print 2> /dev/null
 
-What is the advantage of redirecting the errors? 
-
+What is the advantage of redirecting the errors?
 
 What does /dev/null mean?
 

@@ -1,0 +1,31 @@
+1. Run the sleep command for 1000 seconds in the background 
+
+  sleep 1000 &
+
+2. Use the ps command to identify the PID of the sleep command 
+
+  ps 
+
+3. Kill the sleep command and check it was successful 
+
+  kill 13165
+
+4. Start another sleep command for 1000 seconds in the background 
+
+  sleep 1000&
+
+5. Use the jobs command to identify the JID of the sleep command 
+
+  jons -l
+
+6. Bring the sleep command into the foreground 
+
+    bg % jobid
+    or
+    kill 14855
+
+7. Kill the sleep command and check it was successful 
+
+  kill 14855
+  ps
+
