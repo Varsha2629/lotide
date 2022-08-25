@@ -22,6 +22,7 @@ salary, job id, department name, city, and country name. Do not hard code any va
     ON  e.first_name||' '||e.last_name =  c.first_name||' '||c.last_name
     ORDER BY e.last_name;
     
+    
     /*3. For each customer, display their id, first name, last name, city, and their largest sale, total sales, largest sale as a percentage of total sales,
     average sales amount, and a count of how many sales they have each transacted.
     If they have no sales, show 0 for the aggregated amounts. Sort the result by the customer's id number.*/
@@ -38,21 +39,22 @@ salary, job id, department name, city, and country name. Do not hard code any va
          ORDER BY c.CUST_ID;
     
     
-   /*4. Show the managers who manage entire departments. 
+/*4. Show the managers who manage entire departments. 
 Display the first and last names, department names, addresses, cities, and states. Sort the output by department id.*/
 
     SELECT e.first_name||' '||e.last_name AS "First and Last Name", d.department_name, l.street_address, l.city, l.state_province
     FROM employees e
     JOIN departments d
-    ON e.manager_id = d.manager_id
+    ON e.department_id = d.department_id
     JOIN locations l
     ON d.location_id = l.location_id
-   WHERE EXISTS (SELECT 'x' 
+    WHERE EXISTS (SELECT 'x' 
                 FROM employees 
                 WHERE manager_id = e.employee_id)
     ORDER BY d.department_id;
 
-        /*5. Show any employee who earns the same or more salary as her/his manager. Show the first name, last name, 
+    
+    /*5. Show any employee who earns the same or more salary as her/his manager. Show the first name, last name, 
     job id, and salary of the employee, and the first name, last name, job id, and salary of the manager. Use meaningful column aliases throughout.*/    
     
     SELECT first_name, last_name,job_id, salary, Manager_ID, Employee_ID
@@ -107,66 +109,85 @@ Display the first and last names, department names, addresses, cities, and state
     /*PART 2: Employees Stiles and Seo are going to be earning the same pay as employee Ladwig. 
     Write an update statement to change both salaries in one statement, but do not hard-code the new amount. Instead, use a subquery.*/
     
-            UPDATE employees set salary =(SELECT salary From employees WHERE last_name='Ladwig')
-            WHERE last_name IN ('Stiles', 'Seo');
+         UPDATE employees set salary =(SELECT salary From employees WHERE last_name='Ladwig')
+         WHERE last_name IN ('Stiles', 'Seo');
                  
     /*10. Remove any consultants who are now full-time employees with one delete statement. Do not hard-code any values.*/
     
-            DELETE FROM Consultants 
-            WHERE first_name = ANY (SELECT e.first_name from employees e JOIN consultants c ON e.email = c.email);
+         DELETE FROM Consultants 
+         WHERE first_name = ANY (SELECT e.first_name from employees e JOIN consultants c ON e.email = c.email);
 
     /*11. The regions are expanding. Americas will now be called North America,
     and Middle East and Africa will now be called Middle East. Write the update statements to change these regions.*/
     
-        UPDATE Regions Set Region_name = Case region_id
-        WHEN 2 Then 'North America'
-        WHEN 4 Then 'Middle EAST'
-        END
-        WHERE region_id IN (2,4);
+         UPDATE Regions Set Region_name = Case region_id
+         WHEN 2 Then 'North America'
+         WHEN 4 Then 'Middle EAST'
+         END
+         WHERE region_id IN (2,4);
 
     /*12. Add a new row for South America to the Regions table. Add another row for Africa.*/
-        INSERT INTO REGIONS VALUES (5, 'South America');
-        INSERT INTO REGIONS VALUES (7, 'Africa');
+         INSERT All INTO REGIONS (Region_id , Region_name) VALUES (5, 'South America')
+                   INTO REGIONS (Region_id , Region_name) VALUES (7, 'Africa')
+         SELECT 1 FROM dual;
+         COMMIT;
+        
         
     /*13. For each sales representative, show their biggest sale. Display the sales representative's id,
     first and last names, their largest sales amount, the timestamp of the sale, 
     the customer id, and customer last name. Sort the result by the sales rep's id number.*/
             
-            
-        SELECT e.first_name, e.last_name, MAX(s.sales_amt), c.cust_fname, c.cust_lname  
-        FROM sales s
-        JOIN customers c
-        ON c.cust_id = s.sales_cust_id
-        JOIN employees e
-        ON e.employee_id = s.sales_rep_id
-        ORDER BY e.first_name;        
                 
+        SELECT s.sales_rep_id, e.first_name||' '||e.last_name  AS "sales_representative", 
+        s.sales_amt, c.cust_fname AS customer_firstname,  s.sales_timestamp, c.cust_id,
+        c.cust_lname AS customer_lastname
+        FROM employees e
+        JOIN sales s ON e.employee_id = s.sales_rep_id 
+        JOIN customers c ON s.sales_cust_id = c.cust_id
+        WHERE( s.sales_amt, s.sales_cust_Id )
+        IN (SELECT MAX(sales_amt), sales_cust_id FROM sales 
+        GROUP BY sales_cust_Id)
+        ORDER BY sales_rep_id ;
 
     /*14. Show the commissioned employees whose total pay is above the average total pay of commissioned employees. Total pay is salary added to the product of commission percent multiplied by the total sales for that salesperson.
     Show first name, last name, and total pay. Sort the result by the total pay.*/
-
-    SELECT first_name, lastname, total_pay, salary, 
-    FROM
-    
-
+        
+        SELECT e.first_name, e.last_name, e.salary + (e.commission_pct * SUM(s.sales_amt)) AS "Total pay" 
+        FROM employees e
+        INNER JOIN sales s 
+        ON e.employee_id = s.sales_rep_id
+        WHERE e.commission_pct IS NOT NULL
+        GROUP BY e.first_name, e.last_name, e.salary, e.commission_pct
+        HAVING e.salary + (e.commission_pct * SUM(s.sales_amt)) > (SELECT AVG(e.salary + (e.commission_pct * SUM(s.sales_amt))) "avgtotalpay"
+        FROM employees e INNER JOIN sales s 
+        ON e.employee_id = s.sales_rep_id
+        WHERE e.commission_pct IS NOT NULL
+        GROUP BY e.salary, e.commission_pct)
+        ORDER BY 3;
+        
     /*15. Sales managers earn a commission on the total sales of all their sales representatives. For each sales manager,
     calculate their total compensation, which is the manager's salary added to the product of the manager's commission percent multiplied by the total sales of the manager's sales representatives. 
     Show the manager's employee id, the manager's last name, and their total compensation. Sort by the managers’ employee id number.*/
+    
+        SELECT m.employee_id AS manager_id, m.last_name AS manager_lastname, (m.salary + ROUND(m.commission_pct * SUM(s.sales_amt), 2)) AS "total_pay_sales_Rep"
+        FROM employees e INNER JOIN employees m
+        ON e.manager_id = m.employee_id
+        INNER JOIN sales s
+        ON e.employee_id = s.sales_rep_id
+        GROUP BY m.employee_id, m.last_name, m.salary, m.commission_pct
+        ORDER BY 1;
         
-
     /*16. For every customer’s biggest sales amount, show the sales representative’s last name, his or her manager’s last name, the customer’s first and last names,
     customer’s city and country, and the amount of their largest sale. Sort by the salesperson’s last name.*/
                   
-      SELECT MAX(s.sales_amt) AS "biggest Sale", e.last_name, m.last_name AS "manager's_lastname", c.cust_fname||' '|| c.cust_lname, c.cust_city, c.cust_country
-         FROM customers c
-         JOIN sales s
-         ON c.CUST_ID = s.sales_CUST_ID
-         JOIN employees e
-         ON e.employee_id = s.sales_rep_id
-         JOIN employees m
-         ON m.employee_id = e.manager_id
-         GROUP BY c.cust_fname, c.cust_lname, c.cust_city,  c.cust_country, e.last_name, m.last_name
-         ORDER BY e.last_name; 
-         
-
-    
+        SELECT e.last_name  AS sales_representative_last_name, 
+        m.last_name AS manager_last_name, c.cust_fname AS customer_firstname, 
+        c.cust_lname AS customer_lastname, s.sales_amt
+        FROM employees e
+        JOIN employees m ON e.manager_id = m.employee_id 
+        JOIN sales s ON e.employee_id = s.sales_rep_id 
+        JOIN customers c ON s.sales_cust_id = c.cust_id
+        WHERE( s.sales_amt, s.sales_cust_id )
+        IN (SELECT MAX(sales_amt), sales_cust_id FROM sales 
+        GROUP BY sales_cust_id)
+        ORDER BY 1;
