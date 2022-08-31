@@ -1,0 +1,22 @@
+ elif [ -d $file ]
+  then
+     echo "recycle: Directory provied"
+     exit 1
+  elif [ $file = $0 ]
+  then
+     echo "recycle: attempting to delete recycle - opration aborted"
+     exit 1
+   else
+      inode=$(ls -i $file|cut -d" " -f1)         #get inode of file
+
+      Filename=$(basename $file)                #get selected file in command line argument
+      Filename_Inode=$Filename"_"$inode         #according to formate it will get filename with inode
+
+      mv $file $HOME/recyclebin/$Filename_Inode         # move file to recyclebin
+      original_absolute_path=$(readlink -f $file)       #get Path of the file
+      
+      echo $Filename_Inode:$original_absolute_path>>$HOME/.restore.info  
+          #print path of file will store in .restore.info
+
+fi
+                

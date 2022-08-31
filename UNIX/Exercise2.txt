@@ -1,6 +1,11 @@
 
 1. List all the contents of your home directory and save the output in a file called homeList. 
 
+   #!/bin/bash 
+
+   read -p  "Please enter a word:  "  word 
+
+   echo "You entered $word" 
 
    List the contents of your tradingSystem directory and append to the homeList file. 
 
