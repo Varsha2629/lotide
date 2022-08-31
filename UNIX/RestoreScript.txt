@@ -1,0 +1,39 @@
+#!/bin/bash
+
+file=$1
+restore_filename="$(echo $file | cut -d'_' -f 1)"
+#echo "input file name  $file"
+#echo "restore file name $restore_filename"
+if [ $# -eq 0 ]                                 # if nofile enter in command line argiment
+then
+   echo "No filename provided"
+   exit 1
+elif [ ! -e $HOME/recyclebin/$file ]            # if filename is not available in recyclebin
+then
+   echo "File does not exits"
+   exit 1
+else
+
+        absolute_file_path="$(grep $file $HOME/.restore.info | cut -d ':' -f 2)"
+        #ckeck the file restored already exit
+        if [ -e $absolute_file_path ]
+        then
+             read -p "Do you want to overwrite?" answer
+            # campare and the User answer
+            #if y | Y (yes) then file move from recyclebin to absolute path
+             if [[ $answer == "y" || $answer == "Y" ]]
+             then
+                #if answer is y the move file in absolute path
+               mv "$HOME/recyclebin/$file" "$absolute_file_path"
+               # file added in restore.info to tempfile and move tempfile to .restore.info
+               grep -v $file $HOME/.restore.info > tempfile && mv tempfile $HOME/.restore.info
+              else
+                exit 1
+             fi
+        else
+           # if above condition is not true it will run this move
+            mv "$HOME/recyclebin/$file" "$absolute_file_path"
+            grep -v $file $HOME/.restore.info > tempfile && mv tempfile $HOME/.restore.info
+        fi
+
+fi
