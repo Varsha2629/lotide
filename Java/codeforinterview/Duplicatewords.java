@@ -29,9 +29,12 @@ public class DuplicatewordsInString{
 				wordCount.put(word, 1);
 			}
 		}
-		System.out.println(wordCount);
-	}
+		
+		Set<String> wordInStr = wordCount.keySet();
 
-	
+		for(String word: wordInStr) {
+			System.out.println(word+ ":" + wordCount.get(word));
+		}
+	}
 
 }
