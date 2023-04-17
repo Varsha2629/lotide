@@ -1,4 +1,6 @@
-interface parentInterface {
+package codeforinterview;
+
+interface parentInterface  {
 	
 	void meth1();
 	void meth2();

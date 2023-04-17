@@ -1,0 +1,14 @@
+// Enum: it is a class.Name constance you create
+
+enum Status{
+  Running, Failed, Pending, Success;
+}
+
+public class Demo {
+  public static void main(string a[]){
+    int i = 5;
+    Status s = Status.Running;
+    System.out.println(s.ordinal()); //ordinal gives you index number
+    }
+
+}
