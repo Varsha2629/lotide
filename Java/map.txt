@@ -1,0 +1,28 @@
+import java.util.HashMap;   // map is collection of key Value pair //
+
+public class Maps {
+  public static void main(String[] args) {
+
+    HashMap<String, Integer> empIds = new HashMap<>();
+
+    empIds.put("John", 12345);
+    empIds.put("Jerry", 1234);
+    empIds.put("Carl", 123);
+
+    System.out.println(empIds);
+
+    System.out.println(empIds.get("Carl"));
+
+    System.out.println(empIds.containsKey("Varsha"));
+
+    System.out.println(empIds.containsValue(12345));
+    
+    empIds.put("Wish", 1234556);
+    System.out.println(empIds);
+
+  
+
+  }
+
+
+}
